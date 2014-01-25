@@ -1,0 +1,14 @@
+<script src="jquery-1.10.2.min.js"></script>
+
+<div id="results"></div>
+
+<script>
+$.ajax({
+	url: "http://192.168.4.222",
+	type: 'GET',
+	dataType: 'jsonp',
+	success: function(data){
+		alert(data.a);
+	}
+});
+</script>
