@@ -1,8 +1,8 @@
-div.measurningDevices {
+div.devices {
 	clear: both;
 }
 
-div.measurningDevice {
+div.device {
 	width: 192px;
 	background-color: #80d080;
 	padding: 8px;
@@ -12,13 +12,13 @@ div.measurningDevice {
 	text-align: center;
 }
 
-div.measurningDevice span.name {
+div.device span.name {
 	display: block;
 	text-align: center;
 	font-weight: bold;
 }
 
-div.measurningDevice span.value {
+div.device span.value {
 	display: block;
 	text-align: center;
 }
