@@ -3,7 +3,7 @@
 import time
 
 from jsonp_server import JSONPServer
-from measuring_devices.demo_device import DemoDevice
+from devices.demo_device import DemoDevice
 
 HOST_NAME = 'localhost'
 PORT_NUMBER = 9999

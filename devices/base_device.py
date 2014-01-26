@@ -1,6 +1,6 @@
 import thread
 
-class MeasuringDevice():
+class BaseDevice():
 	def __init__(self):
 		self.running = False
 		self.value = 0.0

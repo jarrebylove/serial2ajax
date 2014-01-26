@@ -1,9 +1,9 @@
 import time
-from measuring_device import MeasuringDevice
+from base_device import BaseDevice
 
-class DemoDevice(MeasuringDevice):
+class DemoDevice(BaseDevice):
 	def __init__(self, maxValue = 1.0, incrementValue = 0.1):
-		MeasuringDevice.__init__(self)
+		BaseDevice.__init__(self)
 		self.maxValue = maxValue
 		self.incrementValue = incrementValue
 		self.start()
