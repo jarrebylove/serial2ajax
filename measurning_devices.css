@@ -1,0 +1,28 @@
+div.measurningDevices {
+	clear: both;
+}
+
+div.measurningDevice {
+	width: 192px;
+	background-color: #80d080;
+	padding: 8px;
+	border: 2px solid #000000;
+	margin: 4px;
+	float: left;
+	text-align: center;
+}
+
+div.measurningDevice span.name {
+	display: block;
+	text-align: center;
+	font-weight: bold;
+}
+
+div.measurningDevice span.value {
+	display: block;
+	text-align: center;
+}
+
+div.items {
+	clear: both;
+}

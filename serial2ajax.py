@@ -5,26 +5,69 @@ import BaseHTTPServer
 import urlparse
 import json
 
-HOST_NAME = '192.168.4.222'
-PORT_NUMBER = 80
+import thread
+
+HOST_NAME = 'localhost'
+PORT_NUMBER = 9999
+
+class MeasuringDevice():
+	def __init__(self):
+		self.running = False
+		self.value = 0.0
+	
+	def start(self):
+		self.running = True
+		thread.start_new_thread(self.run, ())
+	
+	def stop(self):
+		self.running = False
+	
+	def run(self):
+		while(self.running):
+			self.update()
+	
+	def update(self):
+		self.value = 0.0
+		time.sleep(1)
+	
+	def getValue(self):
+		return '%.3f'%(self.value)
+
+class DemoDevice(MeasuringDevice):
+	def __init__(self, maxValue = 1.0, incrementValue = 0.1):
+		MeasuringDevice.__init__(self)
+		self.maxValue = maxValue
+		self.incrementValue = incrementValue
+		self.start()
+	
+	def update(self):
+		if self.value < self.maxValue:
+			self.value += self.incrementValue
+		else:
+			self.value = 0.0
+		time.sleep(1)
 
 class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
-	def do_HEAD(s):
-		s.send_response(200)
-		s.send_header("Access-Control-Allow-Origin", "http://localhost/")
-		s.send_header("Content-type", "application/json")
-		s.end_headers()
 	def do_GET(s):
 		s.send_response(200)
 		s.send_header("Access-Control-Allow-Origin", "http://localhost/")
 		s.send_header("Content-type", "application/json")
 		s.end_headers()
-		parsed_path = urlparse.urlparse(s.path)
-		parsed_query = urlparse.parse_qs(parsed_path.query)
-		callback = parsed_query['callback'][0]
-		data = [ { 'a':'A', 'b':(2, 4), 'c':3 } ]
+		parsedPath = urlparse.urlparse(s.path)
+		parsedQuery = urlparse.parse_qs(parsedPath.query)
+		callback = parsedQuery['callback'][0]
+		deviceNo = parsedPath.path.split('/')[1]
+		if deviceNo.isdigit() and int(deviceNo) < len(devices):
+			data = devices[int(deviceNo)].getValue()
+		else:
+			data = None
 		data = json.dumps(data)
 		s.wfile.write('{0}({1})'.format(callback, data))
+
+devices = [
+	DemoDevice(35.0, 1.0),
+	DemoDevice(5.0, 0.1),
+]
 
 if __name__ == '__main__':
 	server_class = BaseHTTPServer.HTTPServer
@@ -35,5 +78,6 @@ if __name__ == '__main__':
 	except KeyboardInterrupt:
 		pass
 	httpd.server_close()
+	for device in devices:
+		device.stop()
 	print time.asctime(), "Server Stops - %s:%s" % (HOST_NAME, PORT_NUMBER)
-
