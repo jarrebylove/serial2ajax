@@ -5,8 +5,8 @@ import time
 from jsonp_server import JSONPServer
 from devices.demo_device import DemoDevice
 
-HOST_NAME = 'localhost'
-PORT_NUMBER = 9999
+HOST_NAME = '192.168.2.115'
+PORT_NUMBER = 80
 DEVICES = [
 	DemoDevice(35.0, 1.0),
 	DemoDevice(5.0, 0.1),

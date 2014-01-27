@@ -10,23 +10,32 @@ $(document).ready(function() {
 </script>
 
 <div class="devices">
-	<div class="device" url="http://localhost:9999/0">
+	<div class="device" url="http://192.168.4.222:9999/0">
 		<span class="name">Waga zgrubna</span>
 		<span class="value"></span>
-		<input type="radio" name="measurningDevices" value="0">
 	</div>
-	<div class="device" url="http://localhost:9999/1">
+	<div class="device" url="http://192.168.4.222:9999/1">
 		<span class="name">Waga dokladna</span>
 		<span class="value"></span>
-		<input type="radio" name="measurningDevices" value="1">
 	</div>
 </div>
 
+<input type="button" class="measuring" value="Odmierz"/>
+
 <div class="items">
 	<div class="item">
-		<span class="name" title="Nazwa skladnika">Item Name</span>
-		<span class="setValue" title="Wartosc zadana">0.350</span>
-		<span class="realValue" title="Wartosc odmierzona">0,000</span>
-		<button type="button">Odmierz</button>
+		<span class="name" title="Nazwa skladnika">Barwnik zolty</span>
+		<input type="text" class="setValue" title="Wartosc zadana" value="0.300" readonly/>
+		<input type="text" class="realValue" title="Wartosc odmierzona" value="0.000" areadonly/>
+	</div>
+	<div class="item">
+		<span class="name" title="Nazwa skladnika">Barwnik niebieski</span>
+		<input type="text" class="setValue" title="Wartosc zadana" value="2.500" readonly/>
+		<input type="text" class="realValue" title="Wartosc odmierzona" value="0.000" areadonly/>
+	</div>
+	<div class="item">
+		<span class="name" title="Nazwa skladnika">Zageszczenie</span>
+		<input type="text" class="setValue" title="Wartosc zadana" value="12.000" readonly/>
+		<input type="text" class="realValue" title="Wartosc odmierzona" value="0.000" areadonly/>
 	</div>
 </div>

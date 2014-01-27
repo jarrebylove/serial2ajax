@@ -12,6 +12,10 @@ div.device {
 	text-align: center;
 }
 
+div.deviceActive {
+	border-color: #ff0000;
+}
+
 div.device span.name {
 	display: block;
 	text-align: center;
@@ -23,6 +27,48 @@ div.device span.value {
 	text-align: center;
 }
 
+
 div.items {
+	clear: both;
+}
+
+div.item {
+	background-color: #e0e0e0;
+	padding: 4px;
+	margin: 4px;
+}
+
+div.itemActive {
+	background-color: #ffffd0;
+}
+
+div.item span.name {
+	display: inline-block;
+	width: 160px;
+}
+
+div.item input.setValue {
+	background: None;
+	border: None;
+	display: inline-block;
+	width: 80px;
+	font-weight: bold;
+}
+
+div.item input.realValue {
+	background: None;
+	border: None;
+	display: inline-block;
+	width: 80px;
+	color: #ff0000;
+	font-weight: bold;
+}
+
+div.item input.realValueOK {
+	color: #00c000;
+}
+
+input.measuring {
+	display: block;
 	clear: both;
 }
