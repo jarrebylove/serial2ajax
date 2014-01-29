@@ -1,3 +1,8 @@
+@font-face {
+	font-family: 'DigitsLCD';
+	src: url('DigitsLCD.ttf');
+}
+
 div.devices {
 	clear: both;
 }
@@ -18,13 +23,15 @@ div.deviceActive {
 
 div.device span.name {
 	display: block;
-	text-align: center;
+	text-align: left;
 	font-weight: bold;
 }
 
 div.device span.value {
 	display: block;
-	text-align: center;
+	text-align: right;
+	font-family: 'DigitsLCD';
+	font-size: 24pt;
 }
 
 
@@ -53,6 +60,7 @@ div.item input.setValue {
 	display: inline-block;
 	width: 80px;
 	font-weight: bold;
+	text-align: right;
 }
 
 div.item input.realValue {
@@ -62,6 +70,7 @@ div.item input.realValue {
 	width: 80px;
 	color: #ff0000;
 	font-weight: bold;
+	text-align: right;
 }
 
 div.item input.realValueOK {

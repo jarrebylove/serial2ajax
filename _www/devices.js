@@ -58,7 +58,7 @@ function initDevices() {
 	});
 	
 	$('input.measuring').click(function() {
-		if((selectedDevice != null) && (selectedItem != null))
+		if((selectedDevice != null) && (selectedItem != null)) {
 			var item = $('.item')[selectedItem]
 			var setValue = $('.setValue', item)
 			var realValue = $('.realValue', item)
@@ -67,5 +67,6 @@ function initDevices() {
 				realValue.addClass('realValueOK');
 			else
 				realValue.removeClass('realValueOK');
+		}
 	});
 }

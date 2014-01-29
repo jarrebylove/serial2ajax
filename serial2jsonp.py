@@ -4,12 +4,14 @@ import time
 
 from jsonp_server import JSONPServer
 from devices.demo_device import DemoDevice
+from devices.ut70b_device import UT70BDevice
 
-HOST_NAME = '192.168.2.115'
-PORT_NUMBER = 80
+HOST_NAME = 'localhost'
+PORT_NUMBER = 9999
 DEVICES = [
 	DemoDevice(35.0, 1.0),
 	DemoDevice(5.0, 0.1),
+	UT70BDevice('/dev/ttyUSB0'),
 ]
 
 class Server(JSONPServer):
