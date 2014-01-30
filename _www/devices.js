@@ -12,11 +12,39 @@ function getDeviceValue(url, callback) {
 var devicesValues = [];
 var selectedDevice = null;
 var selectedItem = null;
+var measuring = false;
+
+function measuringOn() {
+	$($('table.items tr.item')[selectedItem]).removeClass('completed');
+	measuring = true;
+	$('input.measuring').val('Stop');
+}
+
+function measuringOff() {
+	measuring = false;
+	$('input.measuring').val('Odmierzaj');
+}
+
+function onDeviceValueUpdate(index, value) {
+	devicesValues[index] = value;
+	$('.value', $('.device')[index]).text(value);
+	if((selectedDevice != null) && (selectedItem != null) && measuring) {
+		var item = $('tr.item')[selectedItem]
+		var realValue = $('input.realValue', item)
+		realValue.val(devicesValues[selectedDevice]);
+		if(valueOk(selectedItem)) {
+			$(item).addClass('realValueOK');
+			$('input.measuring').val('Ok');
+		} else {
+			$(item).removeClass('realValueOK');
+			$('input.measuring').val('Stop');
+		}
+	}
+}
 
 function updateDeviceValue(url, index) {
 	getDeviceValue(url, function(value) {
-		devicesValues[index] = value;
-		$('.value', $('.device')[index]).text(value);
+		onDeviceValueUpdate(index, value);
 	});
 	setTimeout(function(){updateDeviceValue(url, index)}, 1000);
 
@@ -41,7 +69,7 @@ function selectFromGroup(selector, activeClass, clickedDevice) {
 	return result;
 }
 
-function valueOK(index) {
+function valueOk(index) {
 	var item = $('tr.item')[index];
 	var setValue = parseFloat($('input.setValue', item).val());
 	var realValue = parseFloat($('input.realValue', item).val());
@@ -49,10 +77,12 @@ function valueOK(index) {
 	return Math.abs(setValue - realValue) <= setValue * tolerance / 100.0;
 }
 
-function allValueOK() {
+function allValueOkAndCompleted() {
 	result = true
 	$('tr.item').each(function(index) {
-		if(valueOK(index) == false)
+		if(valueOk(index) == false)
+			result = false;
+		if($(this).hasClass('completed') == false)
 			result = false;
 	});
 	return result;
@@ -65,28 +95,32 @@ function initDevices() {
 	});
 	
 	$('.device').click(function() {
+		measuringOff();
 		selectedDevice = selectFromGroup('.device', 'deviceActive', this)
 	});
 	
 	$('table.items tr.item').click(function() {
+		measuringOff();
 		selectedItem = selectFromGroup('table.items tr.item', 'active', this)
 	});
-	
-	$('input.measuring').click(function() {
+	$('input.measuring').click(function(event) {
 		if((selectedDevice != null) && (selectedItem != null)) {
-			var item = $('tr.item')[selectedItem]
-			var realValue = $('input.realValue', item)
-			realValue.val(devicesValues[selectedDevice]);
-			if(valueOK(selectedItem))
-				realValue.addClass('realValueOK');
-			else
-				realValue.removeClass('realValueOK');
-			if(allValueOK())
+			if (measuring == false) {
+				measuringOn();
+			} else {
+				measuringOff();
+				if(valueOk(selectedItem)) {
+					$($('table.items tr.item')[selectedItem]).addClass('completed');
+				}
+			}
+			if(allValueOkAndCompleted()) {
 				$('input.done').addClass('show');
-			else
+			} else {
 				$('input.done').removeClass('show');
+			}
 		} else {
-			alert('Wybierz wage i odmirzany skladnik.')
+			alert('Wybierz wage.')
 		}
+		event.stopPropagation();
 	});
 }

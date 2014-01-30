@@ -5,6 +5,7 @@
 
 body {
 	font-family: Arial;
+	font-size: 12px;
 }
 
 div.devices {
@@ -41,6 +42,8 @@ div.device span.value {
 table.items {
 	display: block;
 	clear: both;
+	font-family: Arial;
+	font-size: 14px;
 }
 
 table.items th {
@@ -66,10 +69,18 @@ table.items th.tolerance {
 	width: 160px;
 }
 
-table.items tr {
-	background-color: #e0e0e0;
+table.items th.button {
+	width: 160px;
 }
 
+table.items th.completed {
+	width: 16px;
+}
+
+table.items tr {
+	background-color: #e0e0e0;
+	height: 34px;
+}
 
 table.items tr.active {
 	background-color: #ffffd0;
@@ -79,12 +90,16 @@ table.items td {
 	padding: 4px;
 }
 
-table.items input {
+table.items input[type="text"] {
 	background: None;
 	border: None;
 	display: inline-block;
 	font-weight: bold;
 	text-align: right;
+}
+
+table.items input[type="button"] {
+	display: inline-block;
 }
 
 table.items td.setValue {
@@ -95,25 +110,42 @@ table.items input.setValue {
 	width: 100px;
 }
 
+table.items td.realValue {
+	text-align: right;
+}
+
 table.items input.realValue {
 	width: 100px;
 	color: #ff0000;
 }
 
-table.items td.realValue {
-	text-align: right;
+table.items tr.realValueOk input.realValue {
+	color: #00c000;
 }
 
-table.items input.realValueOK {
-	color: #00c000;
+table.items td.tolerance {
+	text-align: right;
 }
 
 table.items input.tolerance {
 	width: 100px;
 }
 
-table.items td.tolerance {
-	text-align: right;
+table.items input[type="button"] {
+	display: none;
+}
+
+table.items tr.active input[type="button"].measuring {
+	display: inline-block;
+}
+
+table.items span.completed {
+	display: none;
+	color: #00c000;
+}
+
+table.items tr.completed span.completed {
+	display: inline-block;
 }
 
 span.unit {
@@ -123,11 +155,6 @@ span.unit {
 	width: 20px;
 	font-weight: bold;
 	text-align: right;
-}
-
-input.measuring {
-	display: block;
-	clear: both;
 }
 
 input.done {

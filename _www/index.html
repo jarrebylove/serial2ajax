@@ -10,28 +10,27 @@ $(document).ready(function() {
 </script>
 
 <div class="devices">
-	<div class="device" url="http://192.168.4.238:9999/0">
+	<div class="device" url="http://localhost:9999/0">
 		<span class="name">Waga zgrubna</span>
 		<span class="value"></span>
 	</div>
-	<div class="device" url="http://192.168.4.238:9999/1">
+	<div class="device" url="http://localhost:9999/1">
 		<span class="name">Waga dokladna</span>
 		<span class="value"></span>
 	</div>
-	<div class="device" url="http://192.168.4.238:9999/2">
+	<div class="device" url="http://localhost:9999/2">
 		<span class="name">Radwag WPT</span>
 		<span class="value"></span>
 	</div>
 </div>
-
-<input type="button" class="measuring" value="Odmierz"/>
-<br/>
 <table class="items">
 	<tr>
 		<th class="name">Nazwa skladnika</th>
 		<th class="setValue">Wartosc zadana</th>
 		<th class="realValue">Wartosc odmierzona</th>
 		<th class="tolerance">Tolerancja</th>
+		<th class="button"></th>
+		<th class="completed"></th>
 	</tr>
 	<tr class="item">
 		<td class="name" title="Nazwa skladnika">Barwnik zolty</td>
@@ -46,6 +45,12 @@ $(document).ready(function() {
 		<td class="tolerance">
 			<input type="text" class="tolerance" title="Tolerancja" value="1.0" readonly/>
 			<span class="unit">%</span>
+		</td>
+		<td class="button">
+			<input type="button" class="measuring" value="Odmierzaj"/>
+		</td>
+		<td class="completed">
+			<span class="completed">&#x2713;</span>
 		</td>
 	</tr>
 	<tr class="item">
@@ -62,6 +67,12 @@ $(document).ready(function() {
 			<input type="text" class="tolerance" title="Tolerancja" value="1.0" readonly/>
 			<span class="unit">%</span>
 		</td>
+		<td class="button">
+			<input type="button" class="measuring" value="Odmierzaj"/>
+		</td>
+		<td class="completed">
+			<span class="completed">&#x2713;</span>
+		</td>
 	</tr>
 	<tr class="item">
 		<td class="name" title="Nazwa skladnika">Zageszczenie</td>
@@ -77,6 +88,12 @@ $(document).ready(function() {
 			<input type="text" class="tolerance" title="Tolerancja" value="1.0" readonly/>
 			<span class="unit">%</span>
 		</td>
+		<td class="button">
+			<input type="button" class="measuring" value="Odmierzaj"/>
+		</td>
+		<td class="completed">
+			<span class="completed">&#x2713;</span>
+		</td>
 	</tr>
 </table>
-<input type="button" class="done" value="OK"/>
+<input type="button" class="done" value="Gotowe"/>
