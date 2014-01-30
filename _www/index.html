@@ -10,36 +10,73 @@ $(document).ready(function() {
 </script>
 
 <div class="devices">
-	<div class="device" url="http://localhost:9999/0">
+	<div class="device" url="http://192.168.4.238:9999/0">
 		<span class="name">Waga zgrubna</span>
 		<span class="value"></span>
 	</div>
-	<div class="device" url="http://localhost:9999/1">
+	<div class="device" url="http://192.168.4.238:9999/1">
 		<span class="name">Waga dokladna</span>
 		<span class="value"></span>
 	</div>
-	<div class="device" url="http://localhost:9999/2">
-		<span class="name">Multimetr</span>
+	<div class="device" url="http://192.168.4.238:9999/2">
+		<span class="name">Radwag WPT</span>
 		<span class="value"></span>
 	</div>
 </div>
 
 <input type="button" class="measuring" value="Odmierz"/>
-
-<div class="items">
-	<div class="item">
-		<span class="name" title="Nazwa skladnika">Barwnik zolty</span>
-		<input type="text" class="setValue" title="Wartosc zadana" value="0.300" readonly/>
-		<input type="text" class="realValue" title="Wartosc odmierzona" value="0.000" readonly/>
-	</div>
-	<div class="item">
-		<span class="name" title="Nazwa skladnika">Barwnik niebieski</span>
-		<input type="text" class="setValue" title="Wartosc zadana" value="2.500" readonly/>
-		<input type="text" class="realValue" title="Wartosc odmierzona" value="0.000" readonly/>
-	</div>
-	<div class="item">
-		<span class="name" title="Nazwa skladnika">Zageszczenie</span>
-		<input type="text" class="setValue" title="Wartosc zadana" value="12.000" readonly/>
-		<input type="text" class="realValue" title="Wartosc odmierzona" value="0.000" readonly/>
-	</div>
-</div>
+<br/>
+<table class="items">
+	<tr>
+		<th class="name">Nazwa skladnika</th>
+		<th class="setValue">Wartosc zadana</th>
+		<th class="realValue">Wartosc odmierzona</th>
+		<th class="tolerance">Tolerancja</th>
+	</tr>
+	<tr class="item">
+		<td class="name" title="Nazwa skladnika">Barwnik zolty</td>
+		<td class="setValue">
+			<input type="text" class="setValue" title="Wartosc zadana" value="0.300" readonly/>
+			<span class="unit">kg</span>
+		</td>
+		<td class="realValue">
+			<input type="text" class="realValue" title="Wartosc odmierzona" value="0.000" readonly/>
+			<span class="unit">kg</span>
+		</td>
+		<td class="tolerance">
+			<input type="text" class="tolerance" title="Tolerancja" value="1.0" readonly/>
+			<span class="unit">%</span>
+		</td>
+	</tr>
+	<tr class="item">
+		<td class="name" title="Nazwa skladnika">Barwnik niebieski</td>
+		<td class="setValue">
+			<input type="text" class="setValue" title="Wartosc zadana" value="2.500" readonly/>
+			<span class="unit">kg</span>
+		</td>
+		<td class="realValue">
+			<input type="text" class="realValue" title="Wartosc odmierzona" value="0.000" readonly/>
+			<span class="unit">kg</span>
+		</td>
+		<td class="tolerance">
+			<input type="text" class="tolerance" title="Tolerancja" value="1.0" readonly/>
+			<span class="unit">%</span>
+		</td>
+	</tr>
+	<tr class="item">
+		<td class="name" title="Nazwa skladnika">Zageszczenie</td>
+		<td class="setValue">
+			<input type="text" class="setValue" title="Wartosc zadana" value="12.000" readonly/>
+			<span class="unit">kg</span>
+		</td>
+		<td class="realValue">
+			<input type="text" class="realValue" title="Wartosc odmierzona" value="0.000" readonly/>
+			<span class="unit">kg</span>
+		</td>
+		<td class="tolerance">
+			<input type="text" class="tolerance" title="Tolerancja" value="1.0" readonly/>
+			<span class="unit">%</span>
+		</td>
+	</tr>
+</table>
+<input type="button" class="done" value="OK"/>

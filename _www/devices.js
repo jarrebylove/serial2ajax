@@ -12,7 +12,6 @@ function getDeviceValue(url, callback) {
 var devicesValues = [];
 var selectedDevice = null;
 var selectedItem = null;
-var measuring = false;
 
 function updateDeviceValue(url, index) {
 	getDeviceValue(url, function(value) {
@@ -42,6 +41,23 @@ function selectFromGroup(selector, activeClass, clickedDevice) {
 	return result;
 }
 
+function valueOK(index) {
+	var item = $('tr.item')[index];
+	var setValue = parseFloat($('input.setValue', item).val());
+	var realValue = parseFloat($('input.realValue', item).val());
+	var tolerance = parseFloat($('input.tolerance', item).val());
+	return Math.abs(setValue - realValue) <= setValue * tolerance / 100.0;
+}
+
+function allValueOK() {
+	result = true
+	$('tr.item').each(function(index) {
+		if(valueOK(index) == false)
+			result = false;
+	});
+	return result;
+}
+
 function initDevices() {
 	$('.device').each(function(index) {
 		var url = $(this).attr('url');
@@ -52,21 +68,25 @@ function initDevices() {
 		selectedDevice = selectFromGroup('.device', 'deviceActive', this)
 	});
 	
-	$('.item').click(function() {
-		measuring = false;
-		selectedItem = selectFromGroup('.item', 'itemActive', this)
+	$('table.items tr.item').click(function() {
+		selectedItem = selectFromGroup('table.items tr.item', 'active', this)
 	});
 	
 	$('input.measuring').click(function() {
 		if((selectedDevice != null) && (selectedItem != null)) {
-			var item = $('.item')[selectedItem]
-			var setValue = $('.setValue', item)
-			var realValue = $('.realValue', item)
+			var item = $('tr.item')[selectedItem]
+			var realValue = $('input.realValue', item)
 			realValue.val(devicesValues[selectedDevice]);
-			if (Math.abs(parseFloat(setValue.val()) - parseFloat(realValue.val())) <= 0.5)
+			if(valueOK(selectedItem))
 				realValue.addClass('realValueOK');
 			else
 				realValue.removeClass('realValueOK');
+			if(allValueOK())
+				$('input.done').addClass('show');
+			else
+				$('input.done').removeClass('show');
+		} else {
+			alert('Wybierz wage i odmirzany skladnik.')
 		}
 	});
 }

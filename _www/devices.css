@@ -3,6 +3,10 @@
 	src: url('DigitsLCD.ttf');
 }
 
+body {
+	font-family: Arial;
+}
+
 div.devices {
 	clear: both;
 }
@@ -34,50 +38,103 @@ div.device span.value {
 	font-size: 24pt;
 }
 
-
-div.items {
+table.items {
+	display: block;
 	clear: both;
 }
 
-div.item {
-	background-color: #e0e0e0;
+table.items th {
+	background-color: #c0c0c0;
+	text-align: left;
+	font-weight: bold;
 	padding: 4px;
-	margin: 4px;
 }
 
-div.itemActive {
-	background-color: #ffffd0;
-}
-
-div.item span.name {
-	display: inline-block;
+table.items th.name {
 	width: 160px;
 }
 
-div.item input.setValue {
+table.items th.setValue {
+	width: 160px;
+}
+
+table.items th.realValue {
+	width: 160px;
+}
+
+table.items th.tolerance {
+	width: 160px;
+}
+
+table.items tr {
+	background-color: #e0e0e0;
+}
+
+
+table.items tr.active {
+	background-color: #ffffd0;
+}
+
+table.items td {
+	padding: 4px;
+}
+
+table.items input {
 	background: None;
 	border: None;
 	display: inline-block;
-	width: 80px;
 	font-weight: bold;
 	text-align: right;
 }
 
-div.item input.realValue {
-	background: None;
-	border: None;
-	display: inline-block;
-	width: 80px;
+table.items td.setValue {
+	text-align: right;
+}
+
+table.items input.setValue {
+	width: 100px;
+}
+
+table.items input.realValue {
+	width: 100px;
 	color: #ff0000;
-	font-weight: bold;
+}
+
+table.items td.realValue {
 	text-align: right;
 }
 
-div.item input.realValueOK {
+table.items input.realValueOK {
 	color: #00c000;
+}
+
+table.items input.tolerance {
+	width: 100px;
+}
+
+table.items td.tolerance {
+	text-align: right;
+}
+
+span.unit {
+	background: None;
+	border: None;
+	display: inline-block;
+	width: 20px;
+	font-weight: bold;
+	text-align: right;
 }
 
 input.measuring {
 	display: block;
 	clear: both;
+}
+
+input.done {
+	display: none;
+	clear: both;
+}
+
+input.show {
+	display: block;
 }
